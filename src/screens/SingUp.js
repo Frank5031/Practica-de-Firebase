@@ -12,23 +12,6 @@ export default function SingUp({ navigation }) {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  const handleSingUp = () => {
-    // Validación simple
-    if (!email || !password) {
-      Alert.alert('Error', 'Por favor, completa todos los campos.');
-      return;
-    }
-
-    // Proceso de registro simulado (reemplazar con autenticación real)
-    if (email === 'test@example.com' && password === 'password') {
-      Alert.alert('Éxito', '¡Inicio de sesión exitoso!');
-      // Manejar inicio de sesión exitoso (por ejemplo, navegar a otra pantalla)
-      navigation.navigate('Home');
-    } else {
-      Alert.alert('Error', 'Correo electrónico o contraseña inválidos.');
-    }
-  };
-
   const goToLogIn = () => {
     navigation.navigate('LogIn');
   }
@@ -38,6 +21,8 @@ export default function SingUp({ navigation }) {
       .then((userCredential) => {
         console.log('¡Cuenta creada!');
         const user = userCredential.user;
+        Alert.alert('Exito', 'Se creo el usuario con exito.');
+        goToLogIn();
         console.log(user);
       })
       .catch(error => {
@@ -56,14 +41,14 @@ export default function SingUp({ navigation }) {
               resizeMode="contain"
               style={styles.headerImg}
               source={{
-                uri: 'https://assets.withfra.me/SignIn.2.png',
+                uri: 'https://cdn-icons-png.flaticon.com/512/138/138659.png',
               }}
             />
             <Text style={styles.title}>
-              Regístrate en <Text style={{ color: '#075eec' }}>MyApp</Text>
+              Regístro <Text style={{ color: '#075eec' }}></Text>
             </Text>
             <Text style={styles.subtitle}>
-              Accede a tu portafolio y más
+              Acontinuación ingrese los datos solicitados
             </Text>
           </View>
           <View style={styles.form}>
@@ -93,31 +78,22 @@ export default function SingUp({ navigation }) {
               />
             </View>
             <View style={styles.formAction}>
-              <TouchableOpacity onPress={handleSingUp}>
+              <TouchableOpacity>
                 <View style={styles.btn}>
                   <Text onPress={handleCreateAccount} style={styles.btnText}>Registrarse</Text>
                 </View>
               </TouchableOpacity>
             </View>
-            <Text style={styles.formLink}>¿Olvidaste tu contraseña?</Text>
+            <Text style={styles.formLink} onPress={goToLogIn}>¿Ya tienes una cuenta?{' '}
+              <Text style={{ textDecorationLine: 'underline' }}>Inicia sesión</Text>
+            </Text>
           </View>
         </KeyboardAwareScrollView>
-        <TouchableOpacity
-          onPress={() => {
-            // handle link
-          }}
-          style={{ marginTop: 'auto' }}
-        >
-          <Text style={styles.formFooter}>
-            ¿Ya tienes una cuenta?{' '}
-            <Text onPress={goToLogIn} style={{ textDecorationLine: 'underline' }}>Inicia sesión</Text>
-          </Text>
-        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 24,
@@ -143,8 +119,9 @@ const styles = StyleSheet.create({
     marginVertical: 36,
   },
   headerImg: {
-    width: 80,
-    height: 80,
+    borderRadius: 30,
+    width: 140,
+    height: 140,
     alignSelf: 'center',
     marginBottom: 36,
   },
@@ -160,9 +137,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   formLink: {
+    marginTop: 20,
     fontSize: 16,
     fontWeight: '600',
-    color: '#075eec',
+    color: '#000000',
     textAlign: 'center',
   },
   formFooter: {

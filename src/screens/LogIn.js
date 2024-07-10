@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../config/firebase-config';
+import AppLogo from '../../assets/icono.png';
 
 export default function LogIn({ navigation }) {
   const [email, setEmail] = useState('');
@@ -44,15 +45,13 @@ export default function LogIn({ navigation }) {
               alt="App Logo"
               resizeMode="contain"
               style={styles.headerImg}
-              source={{
-                uri: 'https://assets.withfra.me/SignIn.2.png',
-              }}
+              source={AppLogo}
             />
             <Text style={styles.title}>
-              Iniciar Sesión <Text style={{ color: '#075eec' }}>MyApp</Text>
+              Iniciar Sesión <Text style={{ color: '#075eec' }}>E-Shop</Text>
             </Text>
             <Text style={styles.subtitle}>
-              Accede a tu portafolio y más
+              Accede a nuestra gran catologo de productos
             </Text>
           </View>
           <View style={styles.form}>
@@ -106,7 +105,7 @@ export default function LogIn({ navigation }) {
     </SafeAreaView>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 24,
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
     flexBasis: 0,
   },
   title: {
-    fontSize: 31,
+    fontSize: 27,
     fontWeight: '700',
     color: '#1D2A32',
     marginBottom: 6,
@@ -132,8 +131,9 @@ const styles = StyleSheet.create({
     marginVertical: 36,
   },
   headerImg: {
-    width: 80,
-    height: 80,
+    borderRadius: 30,
+    width: 140,
+    height: 140,
     alignSelf: 'center',
     marginBottom: 36,
   },
